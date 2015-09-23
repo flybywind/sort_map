@@ -29,12 +29,10 @@ func TestStringKey(t *testing.T) {
 		test_map[key] = r.Intn(1000)
 	}
 
-	by := func(p1, p2 *sort_map.MapPair) bool {
-		return !p1.KeyCmp(p2)
-	}
-
 	ps := sort_map.NewPairSlice(test_map)
-	sort_map.By(by).Sort(ps)
+	sort_map.By(func(p1, p2 *sort_map.MapPair) bool {
+		return !p1.KeyCmp(p2)
+	}).Sort(ps)
 
 	fmt.Printf("%s\n", ps.String())
 }
@@ -53,12 +51,10 @@ func TestIntKey(t *testing.T) {
 		test_map[key] = r.Intn(1000)
 	}
 
-	by := func(p1, p2 *sort_map.MapPair) bool {
-		return p1.ValueCmp(p2)
-	}
-
 	ps := sort_map.NewPairSlice(test_map)
-	sort_map.By(by).Sort(ps)
+	sort_map.By(func(p1, p2 *sort_map.MapPair) bool {
+		return p1.ValueCmp(p2)
+	}).Sort(ps)
 
 	fmt.Printf("%s\n", ps.String())
 }
