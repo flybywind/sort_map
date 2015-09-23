@@ -55,7 +55,7 @@ func (m *MapPair) ValueCmp(m2 *MapPair) bool {
 	}
 }
 func (m *MapPair) String() string {
-	return fmt.Sprintf("%v -> %v", m.Key, m.Value.Interface())
+	return fmt.Sprintf("{%v:%v}", m.Key, m.Value.Interface())
 }
 
 type PairSlice []MapPair
